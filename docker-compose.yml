@@ -27,6 +27,8 @@ services:
 
   worker_telegram:
     build: .
+    environment:
+      - TELEGRAM_GATEWAY_TOKEN={TOKEN from https://gateway.telegram.org/account/api}
     command: celery -A app.celery_worker.celery worker -Q telegram_queue --loglevel=info
     depends_on:
       - rabbitmq
